@@ -1,13 +1,14 @@
-// @flow
-export type State = number;
-export type ReduxInitAction = { type: '@@redux/INIT' };
-export type Action = ReduxInitAction
-  | { type: 'INCREMENT', delta: number }
-  | { type: 'DECREMENT', delta: number };
+export type Paths
+  = '/'
+  | '/repos'
+  | '/about';
 
-export type Store = {
-  dispatch(action: Action): any;
-  getState(): State;
-  subscribe(listener: Function): Function;
-};
-
+export interface ReactRouterHandler {
+  history: Object;
+  location: Object;
+  params: Object;
+  route: Object;
+  routeParams: Object;
+  routes: Array<any>;
+  children: any;
+}

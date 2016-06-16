@@ -13,10 +13,13 @@
     }
   },
   "plugins": [
-    "react"
+    "react",
+    "flow-vars"
   ],
   "rules": {
     "semi": [2, "never"],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "flow-vars/define-flow-type": 1,
+    "flow-vars/use-flow-type": 1
   }
 }
