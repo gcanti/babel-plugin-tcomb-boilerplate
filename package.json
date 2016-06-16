@@ -1,0 +1,41 @@
+{
+  "name": "babel-plugin-tcomb-boilerplate",
+  "version": "0.1.0",
+  "description": "Boilerplate showing what you can get in terms of type safety with babel-plugin-tcomb-boilerplate",
+  "scripts": {
+    "lint": "eslint src",
+    "start": "webpack-dev-server --progress --colors --config ./webpack.config.js"
+  },
+  "author": "Giulio Canti <giulio.canti@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "redux": "^3.5.2",
+    "tcomb": "^3.2.2",
+    "tcomb-react": "^0.9.1"
+  },
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-eslint": "*",
+    "babel-loader": "*",
+    "babel-plugin-tcomb": "gcanti/babel-plugin-tcomb#master",
+    "babel-plugin-transform-class-properties": "^6.9.1",
+    "babel-plugin-transform-decorators-legacy": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "eslint": "*",
+    "eslint-plugin-react": "*",
+    "html-webpack-plugin": "*",
+    "install": "^0.8.1",
+    "npm": "^3.9.5",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  },
+  "tags": [
+    "tcomb",
+    "flow",
+    "babel",
+    "plugin"
+  ]
+}
