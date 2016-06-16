@@ -17,7 +17,7 @@ type State = {
 @props(Props)
 export default class App extends React.Component<void, Props, State> {
 
-  unsubscribe: Function;
+  unsubscribe: () => void;
   state: State = { count: 0 };
 
   componentWillMount() {

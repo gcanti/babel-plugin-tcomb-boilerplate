@@ -6,8 +6,7 @@ import App from './components/App'
 
 import type {
   State,
-  Action,
-  Store
+  Action
 } from './types'
 
 function reducer(state: State = 0, action: Action): State {
@@ -20,7 +19,7 @@ function reducer(state: State = 0, action: Action): State {
   return state
 }
 
-const store: Store = createStore(reducer)
+const store = createStore(reducer)
 
 ReactDOM.render(
   <App store={store} />,
