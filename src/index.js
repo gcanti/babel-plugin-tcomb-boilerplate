@@ -1,28 +1,17 @@
-// @flow
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import todoApp from './reducers'
 import App from './components/App'
 
-import type {
-  State,
-  Action,
-  Store
-} from './types'
+let store = createStore(todoApp)
 
-function reducer(state: State = 0, action: Action): State {
-  switch(action.type) {
-    case 'INCREMENT' :
-      return state + action.delta
-    case 'DECREMENT' :
-      return state - action.delta
-  }
-  return state
-}
-
-const store: Store = createStore(reducer)
-
-ReactDOM.render(
-  <App store={store} />,
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 )
+
+window.store = store
