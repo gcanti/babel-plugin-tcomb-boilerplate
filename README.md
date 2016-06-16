@@ -16,6 +16,12 @@ cd babel-plugin-tcomb-boilerplate
 flow # run flow
 ```
 
+# Branches
+
+- [react + redux](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/counter)
+- [elm architecture](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/elm)
+- [react + react-router](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/react-router)
+
 # Tools
 
 ## Sublime Text 3 linter

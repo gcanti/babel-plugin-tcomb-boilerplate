@@ -1,28 +1,30 @@
 // @flow
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import App from './components/App'
 
-import type {
-  State,
-  Action,
-  Store
-} from './types'
-
-function reducer(state: State = 0, action: Action): State {
-  switch(action.type) {
-    case 'INCREMENT' :
-      return state + action.delta
-    case 'DECREMENT' :
-      return state - action.delta
+const Maybe = {
+  of<A>(value: A): A {
+    return value
+  },
+  map<A, B>(f: (a: A) => B, fa: ?A): ?B {
+    return fa ? f(fa) : null
   }
-  return state
 }
 
-const store: Store = createStore(reducer)
+const List = {
+  of<A>(value: A): Array<A> {
+    return [value]
+  },
+  map<A, B>(f: (a: A) => B, fa: Array<A>): Array<B> {
+    return fa.map(f)
+  }
+}
 
-ReactDOM.render(
-  <App store={store} />,
-  document.getElementById('app')
-)
+type IO<A> = () => A;
+
+const Io = {
+  of<A>(value: A): A {
+    return value
+  },
+  map<A, B>(f: (a: A) => B, fa: IO<A>): IO<B> {
+    return () => f(fa())
+  }
+}

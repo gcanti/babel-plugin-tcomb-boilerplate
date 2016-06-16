@@ -6,6 +6,8 @@ declare module 'tcomb' {
   // refinement hack
   declare interface $Refinement<P: (x: any) => boolean> {}
 
+  declare type $Integer = number;
+
   declare type Predicate = (x: any) => boolean;
 
   declare type Props = {[key: string]: $Type};
@@ -131,6 +133,7 @@ declare module 'tcomb' {
   declare type Mixin = Struct | Interface | Props;
 
   declare type Command = OptionsUpdate
+    | CommandSet
     | CommandApply
     | CommandPush
     | CommandRemove
