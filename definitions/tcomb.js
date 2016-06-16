@@ -131,6 +131,7 @@ declare module 'tcomb' {
   declare type Mixin = Struct | Interface | Props;
 
   declare type Command = OptionsUpdate
+    | CommandSet
     | CommandApply
     | CommandPush
     | CommandRemove

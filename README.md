@@ -16,6 +16,11 @@ cd babel-plugin-tcomb-boilerplate
 flow # run flow
 ```
 
+# Branches
+
+- [counter](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/counter)
+- [elm architecture (beginnerProgram)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/elm)
+
 # Tools
 
 ## Sublime Text 3 linter
