@@ -11,6 +11,8 @@
   "dependencies": {
     "react": "*",
     "react-dom": "*",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.4.1",
     "redux": "^3.5.2",
     "tcomb": "^3.2.2",
     "tcomb-react": "^0.9.1"

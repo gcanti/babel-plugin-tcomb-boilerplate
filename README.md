@@ -4,6 +4,9 @@
 git clone https://github.com/gcanti/babel-plugin-tcomb-boilerplate.git
 cd babel-plugin-tcomb-boilerplate
 npm install
+
+git checkout <branch>
+
 npm start # start dev server
 ```
 
@@ -18,9 +21,11 @@ flow # run flow
 
 # Branches
 
-- [react + redux](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/counter)
-- [elm architecture](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/elm)
-- [react + react-router](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/react-router)
+- [`master` (WIP)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/master)
+- [`counter` (react + redux)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/counter)
+- [`elm` (elm architecture)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/elm)
+- [`react-router` (react + react-router)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/react-router)
+- [`react-redux` (react + redux + react-redux)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/react-redux)
 
 # Tools
 
