@@ -1,8 +1,17 @@
+// @flow
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
+import type {
+  Dispatch,
+  PureComponent
+} from '../types'
 
-let AddTodo = ({ dispatch }) => {
+type Props = {
+  dispatch: Dispatch
+};
+
+const AddTodo = ({ dispatch }: Props) => {
   let input
 
   return (
@@ -25,6 +34,7 @@ let AddTodo = ({ dispatch }) => {
     </div>
   )
 }
-AddTodo = connect()(AddTodo)
 
-export default AddTodo
+const ConnectedAddTodo: PureComponent<{}> = connect()(AddTodo)
+
+export default ConnectedAddTodo

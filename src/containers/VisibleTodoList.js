@@ -1,6 +1,15 @@
+// @flow
 import { connect } from 'react-redux'
 import { toggleTodo } from '../actions'
 import TodoList from '../components/TodoList'
+import type {
+  Dispatch,
+  State,
+  PureComponent
+} from '../types'
+
+type Props = {
+};
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -13,13 +22,13 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: State) => {
   return {
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onTodoClick: (id) => {
       dispatch(toggleTodo(id))
@@ -27,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const VisibleTodoList = connect(
+const VisibleTodoList: PureComponent<Props> = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodoList)

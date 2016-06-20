@@ -1,38 +1,29 @@
-const todo = (state, action) => {
+// @flow
+import type { Todo, Action } from '../types'
+
+function toggleTodo(id) {
+  return todo => {
+    if (todo.id !== id) {
+      return todo
+    }
+    return Object.assign({}, todo, {
+      completed: !todo.completed
+    })
+  }
+}
+
+function createTodo(id, text) {
+  return { id, text, completed: false }
+}
+
+export default function todos(state: Array<Todo> = [], action: Action): Array<Todo> {
   switch (action.type) {
     case 'ADD_TODO':
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      }
+      return state.concat(createTodo(action.id, action.text))
     case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state
-      }
-
-      return Object.assign({}, state, {
-        completed: !state.completed
-      })
+      return state.map(toggleTodo(action.id))
     default:
       return state
   }
 }
 
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action)
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(t =>
-        todo(t, action)
-      )
-    default:
-      return state
-  }
-}
-
-export default todos

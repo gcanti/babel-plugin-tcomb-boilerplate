@@ -1,7 +1,9 @@
 declare module 'redux' {
 
+  declare type Dispatch<Action> = (action: Action) => any;
+
   declare type Store<State, Action> = {
-    dispatch(action: Action): any;
+    dispatch: Dispatch<Action>;
     getState(): State;
     subscribe(listener: () => any): () => void;
   };
@@ -10,6 +12,6 @@ declare module 'redux' {
 
   declare var exports: {
     createStore<State, Action>(reducer: Reducer<State, Action>): Store<State, Action>;
-    combineReducers(reducers: Object): Reducer<State, Action>;
+    combineReducers<State, Action>(reducers: Object): Reducer<State, Action>;
   }
 }
