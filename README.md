@@ -1,3 +1,11 @@
+[babel-plugin-tcomb](https://github.com/gcanti/babel-plugin-tcomb) is a babel plugin for static and runtime type checking using Flow and tcomb.
+
+**Tools**
+
+[Flow](https://flowtype.org/) is a static type checker for JavaScript.
+
+[tcomb](https://github.com/gcanti/tcomb) is a library for Node.js and the browser which allows you to check the types of JavaScript values at runtime with a simple and concise syntax. It's great for Domain Driven Design and for adding safety to your internal code.
+
 # Setup
 
 ```sh
@@ -13,6 +21,8 @@ npm start # start dev server
 Then open `localhost:8080`
 
 # Flow
+
+Download Flow from https://github.com/facebook/flow/releases
 
 ```sh
 cd babel-plugin-tcomb-boilerplate
