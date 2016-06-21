@@ -8,10 +8,10 @@ declare module 'redux' {
     subscribe(listener: () => any): () => void;
   };
 
-  declare type Reducer<State, Action> = (state: State, action: Action) => State;
+  declare type Reducer<State, Action, ReduxAction> = (state: State, action: Action | ReduxAction) => State;
 
   declare var exports: {
-    createStore<State, Action>(reducer: Reducer<State, Action>): Store<State, Action>;
-    combineReducers<State, Action>(reducers: Object): Reducer<State, Action>;
+    createStore<State, Action, ReduxAction>(reducer: Reducer<State, Action, ReduxAction>, preloadedState?: State): Store<State, Action>;
+    combineReducers<State, Action, ReduxAction>(reducers: Object): Reducer<State, Action, ReduxAction>;
   }
 }

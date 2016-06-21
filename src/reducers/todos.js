@@ -1,5 +1,9 @@
 // @flow
-import type { Todo, Action } from '../types'
+import type {
+  Todo,
+  Action,
+  ReduxAction
+} from '../types'
 
 function toggleTodo(id) {
   return todo => {
@@ -16,7 +20,7 @@ function createTodo(id, text) {
   return { id, text, completed: false }
 }
 
-export default function todos(state: Array<Todo> = [], action: Action): Array<Todo> {
+export default function todos(state: Array<Todo> = [], action: Action | ReduxAction): Array<Todo> {
   switch (action.type) {
     case 'ADD_TODO':
       return state.concat(createTodo(action.id, action.text))
