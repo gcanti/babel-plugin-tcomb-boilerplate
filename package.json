@@ -21,7 +21,7 @@
     "babel-cli": "*",
     "babel-eslint": "*",
     "babel-loader": "*",
-    "babel-plugin-tcomb": "gcanti/babel-plugin-tcomb#master",
+    "babel-plugin-tcomb": "^0.3.1",
     "babel-plugin-transform-class-properties": "^6.9.1",
     "babel-plugin-transform-decorators-legacy": "*",
     "babel-preset-es2015": "*",
