@@ -14,5 +14,3 @@ render(
   </Provider>,
   document.getElementById('app')
 )
-
-window.store = store
