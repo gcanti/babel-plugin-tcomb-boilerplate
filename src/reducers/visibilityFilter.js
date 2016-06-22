@@ -2,10 +2,10 @@
 import type {
   Filter,
   Action,
-  ReduxAction
+  ThirdPartyAction
 } from '../types'
 
-export default function visibilityFilter(state: Filter = 'SHOW_ALL', action: Action | ReduxAction) {
+export default function visibilityFilter(state: Filter = 'SHOW_ALL', action: Action | ThirdPartyAction) {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter

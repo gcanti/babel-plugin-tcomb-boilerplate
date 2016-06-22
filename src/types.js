@@ -46,9 +46,9 @@ export type SetVisibilityFilterAction = {
   filter: Filter
 };
 
-const isReduxAction = (a: Object) => typeof a.type === 'string' && a.type.indexOf('@@redux/') === 0
-
-export type ReduxAction = Object & $Refinement<typeof isReduxAction>;
+const isReduxAction = (x: Object) => x.type.indexOf('@@redux/') === 0
+const isThirdPartyAction = (x: Object) => isReduxAction(x)
+export type ThirdPartyAction = Object & $Refinement<typeof isThirdPartyAction>;
 
 export type Action
   = AddTodoAction
@@ -56,10 +56,10 @@ export type Action
   | SetVisibilityFilterAction
   ;
 
-export type PureComponent<P> = (props: P) => React.Element;
+export type ReactElement = Element & $Refinement<typeof React.isValidElement>;
 
 export type Store = ReduxStore<State, Action>;
 
-export type Reducer = ReduxReducer<State, Action, ReduxAction>;
+export type Reducer = ReduxReducer<State, Action, ThirdPartyAction>;
 
 export type Dispatch = ReduxDispatch<Action>;

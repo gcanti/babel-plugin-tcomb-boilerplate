@@ -5,21 +5,28 @@ import Link from '../components/Link'
 import type {
   Dispatch,
   State,
-  Filter,
-  PureComponent
+  Filter
 } from '../types'
 
-type Props = {
+type OwnProps = {
   filter: Filter
 };
 
-const mapStateToProps = (state: State, ownProps: Props) => {
+type StateProps = {
+  active: boolean
+};
+
+type DispatchProps = {
+  onClick: () => void
+};
+
+const mapStateToProps = (state: State, ownProps: OwnProps): StateProps => {
   return {
     active: ownProps.filter === state.visibilityFilter
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: Props) => {
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: OwnProps): DispatchProps => {
   return {
     onClick: () => {
       dispatch(setVisibilityFilter(ownProps.filter))
@@ -27,7 +34,7 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: Props) => {
   }
 }
 
-const ConnectedLink: PureComponent<Props> = connect(
+const ConnectedLink = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Link)

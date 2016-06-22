@@ -2,7 +2,7 @@
 import type {
   Todo,
   Action,
-  ReduxAction
+  ThirdPartyAction
 } from '../types'
 
 function toggleTodo(id) {
@@ -20,7 +20,7 @@ function createTodo(id, text) {
   return { id, text, completed: false }
 }
 
-export default function todos(state: Array<Todo> = [], action: Action | ReduxAction): Array<Todo> {
+export default function todos(state: Array<Todo> = [], action: Action | ThirdPartyAction): Array<Todo> {
   switch (action.type) {
     case 'ADD_TODO':
       return state.concat(createTodo(action.id, action.text))

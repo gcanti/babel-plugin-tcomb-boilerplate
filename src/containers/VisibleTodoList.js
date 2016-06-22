@@ -5,13 +5,19 @@ import TodoList from '../components/TodoList'
 import type {
   Dispatch,
   State,
-  PureComponent
+  Todo,
+  Filter
 } from '../types'
 
-type Props = {
+type StateProps = {
+  todos: Array<Todo>
 };
 
-const getVisibleTodos = (todos, filter) => {
+type DispatchProps = {
+  onTodoClick: (id: number) => void
+};
+
+const getVisibleTodos = (todos: Array<Todo>, filter: Filter): Array<Todo> => {
   switch (filter) {
     case 'SHOW_ALL':
       return todos
@@ -19,16 +25,18 @@ const getVisibleTodos = (todos, filter) => {
       return todos.filter(t => t.completed)
     case 'SHOW_ACTIVE':
       return todos.filter(t => !t.completed)
+    default :
+      return todos
   }
 }
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: State): StateProps => {
   return {
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => {
   return {
     onTodoClick: (id) => {
       dispatch(toggleTodo(id))
@@ -36,7 +44,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   }
 }
 
-const VisibleTodoList: PureComponent<Props> = connect(
+const VisibleTodoList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodoList)

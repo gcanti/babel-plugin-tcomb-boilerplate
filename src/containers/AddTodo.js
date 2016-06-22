@@ -3,15 +3,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
 import type {
-  Dispatch,
-  PureComponent
+  Dispatch
 } from '../types'
 
 type Props = {
   dispatch: Dispatch
 };
 
-const AddTodo = ({ dispatch }: Props) => {
+const AddTodo = (props: Props) => {
   let input
 
   return (
@@ -21,7 +20,7 @@ const AddTodo = ({ dispatch }: Props) => {
         if (!input.value.trim()) {
           return
         }
-        dispatch(addTodo(input.value))
+        props.dispatch(addTodo(input.value))
         input.value = ''
       }}>
         <input ref={node => {
@@ -35,6 +34,6 @@ const AddTodo = ({ dispatch }: Props) => {
   )
 }
 
-const ConnectedAddTodo: PureComponent<{}> = connect()(AddTodo)
+const ConnectedAddTodo = connect()(AddTodo)
 
 export default ConnectedAddTodo
