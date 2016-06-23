@@ -8,7 +8,7 @@ import runEffect from './runEffect'
 const app = new App(history)
 app.subscribe(({ effect }) => {
   if (effect) {
-    console.log('effect', effect)
+    console.log('effect', effect) // eslint-disable-line
     const actionPromise = runEffect(effect, app)
     if (actionPromise) {
       actionPromise.then(action => app.store.dispatch(action))
