@@ -31,7 +31,7 @@ flow # run flow
 
 # Branches
 
-- [`master` (WIP)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/master)
+- [`master` (complete app, WIP)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/master)
 - [`counter` (react + redux)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/counter)
 - [`elm` (elm architecture)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/elm)
 - [`react-router` (react + react-router)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/react-router)
