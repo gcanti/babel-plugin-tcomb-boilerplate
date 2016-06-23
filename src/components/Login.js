@@ -20,7 +20,7 @@ export default function Login(props: Props): ReactElement {
                 Log in
               </div>
               <div className="panel-body">
-                <button className="btn btn-default" onClick={() => props.doLogin('a', 'b')}>Log in</button>
+                <button className="btn btn-default" onClick={() => props.doLogin('user@domain.com', 'password')}>Log in</button>
               </div>
             </div>
           </div>

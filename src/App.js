@@ -1,11 +1,13 @@
 // @flow
 import reducer from './reducers'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import createLogger from 'redux-logger'
 
 import type { Unsubscriber } from 'redux'
 import type {
   State,
-  Store
+  Store,
+  Listener
 } from './types'
 
 export default class App {
@@ -15,16 +17,28 @@ export default class App {
 
   constructor(history: Object, preloadedState?: State) {
     this.history = history
-    this.store = createStore(reducer, preloadedState)
+    this.store = createStore(reducer, preloadedState, applyMiddleware(createLogger()))
   }
 
-  subscribe(listener: (state: State) => void): Unsubscriber {
+  subscribe(listener: Listener): Unsubscriber {
     return this.store.subscribe(() => {
-      listener(this.store.getState())
+      listener(this.getState())
     })
   }
 
-  transitionTo(path: string) {
+  //
+  // queries
+  //
+
+  getState(): State {
+    return this.store.getState()
+  }
+
+  //
+  // commands
+  //
+
+  doNavigate(path: string) {
     this.history.push(path)
   }
 
@@ -34,7 +48,6 @@ export default class App {
       email,
       password
     })
-    this.transitionTo('/home')
   }
 
 }
