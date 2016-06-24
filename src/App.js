@@ -6,6 +6,7 @@ import createLogger from 'redux-logger'
 
 import type { Unsubscriber } from 'redux'
 import type {
+  Api,
   State,
   Store,
   Listener
@@ -13,17 +14,19 @@ import type {
 
 export default class App {
 
-  store: Store;
   history: Object;
+  api: Api;
+  store: Store;
 
-  constructor(history: Object, preloadedState?: State) {
+  constructor(history: Object, api: Api, preloadedState?: State) {
     this.history = history
+    this.api = api
     this.store = createStore(reducer, preloadedState, applyMiddleware(createLogger()))
   }
 
   subscribe(listener: Listener): Unsubscriber {
     return this.store.subscribe(() => {
-      listener(this.getState())
+      listener(this.store.getState())
     })
   }
 
@@ -31,19 +34,15 @@ export default class App {
   // queries
   //
 
-  isAuthenticated() {
-    return !t.Nil.is(this.getState().user)
-  }
-
-  getState(): State {
-    return this.store.getState()
+  isAuthenticated(): boolean {
+    return !t.Nil.is(this.store.getState().user)
   }
 
   //
   // commands
   //
 
-  doNavigate(path: string) {
+  doNavigate(path: string): void {
     this.history.push(path)
   }
 

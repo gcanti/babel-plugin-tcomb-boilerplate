@@ -20,6 +20,29 @@ export type User = {
 };
 
 //
+// api
+//
+
+type SuccessPayload<T> = {
+  code: 200,
+  data: T
+};
+
+type FailurePayload<T> = {
+  code: 500,
+  data: T
+};
+
+type DoLoginSuccess = SuccessPayload<{
+  email: string
+}>;
+
+export interface Api {
+  doLogin(email: string, password: string): Promise<DoLoginSuccess | FailurePayload<void>>;
+  doLogout(): Promise<SuccessPayload<void>>;
+}
+
+//
 // effects
 //
 
@@ -107,4 +130,3 @@ export type Reducer = ReduxReducer<State, Action, ThirdPartyAction>;
 export type Dispatch = ReduxDispatch<Action>;
 
 export type Listener = (state: State) => void;
-

@@ -1,9 +1,4 @@
 // @flow
-import {
-  doLogin,
-  doLogout
-} from './api'
-
 import type App from './App'
 import type {
   Effect,
@@ -11,10 +6,10 @@ import type {
   User
 } from './types'
 
-function runDoLogin(effect) {
-  return doLogin(effect.email, effect.password)
+function runDoLogin(effect, app) {
+  return app.api.doLogin(effect.email, effect.password)
     .then(res => {
-      if (res.code === 404) {
+      if (res.code === 500) {
         return {
           type: 'LOGIN_FAILED'
         }
@@ -26,8 +21,8 @@ function runDoLogin(effect) {
     })
 }
 
-function runDoLogout() {
-  return doLogout()
+function runDoLogout(effect, app) {
+  return app.api.doLogout()
     .then(() => {
       return {
         type: 'LOGOUT_SUCCEEDED'
@@ -36,17 +31,16 @@ function runDoLogout() {
 }
 
 function runDoNavigate(effect, app) {
-  const path = effect.path
-  setTimeout(() => app.doNavigate(path), 0)
+  setTimeout(() => app.doNavigate(effect.path), 0)
 }
 
 export default function runEffect(effect: Effect, app: App): ?Promise<Action> {
   switch (effect.type) {
     case 'DO_LOGIN' :
-      return runDoLogin(effect)
+      return runDoLogin(effect, app)
     case 'DO_NAVIGATE' :
       return runDoNavigate(effect, app)
     case 'DO_LOGOUT' :
-      return runDoLogout(effect)
+      return runDoLogout(effect, app)
   }
 }

@@ -4,8 +4,9 @@ import createRouter from './createRouter'
 import history from './history'
 import App from './App'
 import runEffect from './runEffect'
+import api from './api/fake'
 
-const app = new App(history)
+const app = new App(history, api)
 app.subscribe(({ effect }) => {
   if (effect) {
     console.log('effect', effect) // eslint-disable-line
