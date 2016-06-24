@@ -9,7 +9,8 @@ import type {
 import type { $Reify } from 'tcomb'
 
 export type Props = {
-  user: User
+  user: User,
+  doLogout: () => void
 };
 
 export default function Home(props: Props): ReactElement {
@@ -24,6 +25,9 @@ export default function Home(props: Props): ReactElement {
               </div>
               <div className="panel-body">
                 Welcome { props.user.email }
+              </div>
+              <div className="panel-body">
+                <button className="btn btn-default" onClick={() => props.doLogout()}>Log out</button>
               </div>
             </div>
           </div>

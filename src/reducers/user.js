@@ -7,8 +7,10 @@ import type {
 
 export default function user(state: ?User = null, action: Action | ThirdPartyAction): ?User {
   switch (action.type) {
-    case 'LOGIN_REQUESTED' :
+    case 'LOGIN_SUCCEEDED' :
       return { email: 'user@domain.com' }
+    case 'LOGOUT_SUCCEEDED' :
+      return null
   }
   return state
 }

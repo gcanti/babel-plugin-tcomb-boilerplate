@@ -9,14 +9,28 @@ import type {
   Dispatch as ReduxDispatch
 } from 'redux'
 
+//
+// models
+//
+
+export type ReactElement = Element & $Refinement<typeof React.isValidElement>;
+
 export type User = {
   email: string
 };
+
+//
+// effects
+//
 
 type DoLogin = {
   type: 'DO_LOGIN',
   email: string,
   password: string
+};
+
+type DoLogout = {
+  type: 'DO_LOGOUT'
 };
 
 type DoNavigate = {
@@ -26,16 +40,21 @@ type DoNavigate = {
 
 export type Effect
   = DoLogin
+  | DoLogout
   | DoNavigate;
+
+//
+// state
+//
 
 export type State = {
   user: ?User,
   effect: ?Effect
 };
 
-const isReduxAction = (x: Object) => x.type.indexOf('@@redux/') === 0
-const isThirdPartyAction = (x: Object) => isReduxAction(x)
-export type ThirdPartyAction = Object & $Refinement<typeof isThirdPartyAction>;
+//
+// actions
+//
 
 type LoginRequested = {
   type: 'LOGIN_REQUESTED',
@@ -52,14 +71,34 @@ type LoginFailed = {
   type: 'LOGIN_FAILED'
 };
 
-// TODO
+type LogoutRequested = {
+  type: 'LOGOUT_REQUESTED'
+};
+
+type LogoutSucceeded = {
+  type: 'LOGOUT_SUCCEEDED'
+};
+
+type LogoutFailed = {
+  type: 'LOGOUT_FAILED'
+};
+
 export type Action
   = LoginRequested
   | LoginSucceeded
   | LoginFailed
+  | LogoutRequested
+  | LogoutSucceeded
+  | LogoutFailed
   ;
 
-export type ReactElement = Element & $Refinement<typeof React.isValidElement>;
+//
+// redux
+//
+
+const isReduxAction = (x: Object) => x.type.indexOf('@@redux/') === 0
+const isThirdPartyAction = (x: Object) => isReduxAction(x)
+export type ThirdPartyAction = Object & $Refinement<typeof isThirdPartyAction>;
 
 export type Store = ReduxStore<State, Action>;
 

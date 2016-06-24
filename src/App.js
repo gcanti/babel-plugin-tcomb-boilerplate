@@ -1,4 +1,5 @@
 // @flow
+import t from 'tcomb'
 import reducer from './reducers'
 import { createStore, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
@@ -30,6 +31,10 @@ export default class App {
   // queries
   //
 
+  isAuthenticated() {
+    return !t.Nil.is(this.getState().user)
+  }
+
   getState(): State {
     return this.store.getState()
   }
@@ -47,6 +52,12 @@ export default class App {
       type: 'LOGIN_REQUESTED',
       email,
       password
+    })
+  }
+
+  doLogout(): void {
+    this.store.dispatch({
+      type: 'LOGOUT_REQUESTED'
     })
   }
 

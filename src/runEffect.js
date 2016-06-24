@@ -1,6 +1,7 @@
 // @flow
 import {
-  doLogin
+  doLogin,
+  doLogout
 } from './api'
 
 import type App from './App'
@@ -25,6 +26,15 @@ function runDoLogin(effect) {
     })
 }
 
+function runDoLogout() {
+  return doLogout()
+    .then(() => {
+      return {
+        type: 'LOGOUT_SUCCEEDED'
+      }
+    })
+}
+
 function runDoNavigate(effect, app) {
   const path = effect.path
   setTimeout(() => app.doNavigate(path), 0)
@@ -35,6 +45,8 @@ export default function runEffect(effect: Effect, app: App): ?Promise<Action> {
     case 'DO_LOGIN' :
       return runDoLogin(effect)
     case 'DO_NAVIGATE' :
-      runDoNavigate(effect, app)
+      return runDoNavigate(effect, app)
+    case 'DO_LOGOUT' :
+      return runDoLogout(effect)
   }
 }

@@ -25,3 +25,9 @@ export function doLogin(email: string, password: string) {
     code: 404
   })
 }
+
+export function doLogout() {
+  return delayedResolve(200, {
+    code: 200
+  })
+}

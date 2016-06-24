@@ -21,6 +21,10 @@ export default class HomeContainer extends React.Component {
     this.state = this.props.app.store.getState()
   }
 
+  doLogout: () => void = () => {
+    this.props.app.doLogout()
+  };
+
   componentDidMount() {
     this.unsubscribe = this.props.app.subscribe(state => {
       this.setState(state)
@@ -35,7 +39,7 @@ export default class HomeContainer extends React.Component {
     if (!this.state.user) {
       return null
     }
-    return <Home user={this.state.user} />
+    return <Home user={this.state.user} doLogout={this.doLogout} />
   }
 
 }
