@@ -37,8 +37,12 @@ flow # run flow
 - [`react-router` (react + react-router)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/react-router)
 - [`react-redux` (react + redux + react-redux)](https://github.com/gcanti/babel-plugin-tcomb-boilerplate/tree/react-redux)
 
-# Tools
+# Editor tools
 
-## Sublime Text 3 linter
+## Sublime Text 3
 
 [SublimeLinter-flow](https://github.com/SublimeLinter/SublimeLinter-flow)
+
+## Atom
+
+[flow-ide](https://github.com/steelbrain/flow-ide)
