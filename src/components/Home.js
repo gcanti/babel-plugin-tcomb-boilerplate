@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
 import { propTypes } from 'tcomb-react'
+import Alert from './Alert'
 
 import type {
   ReactElement,
@@ -8,10 +9,18 @@ import type {
 } from '../types'
 import type { $Reify } from 'tcomb'
 
-export type Props = {
+type Props = {
+  error: ?string,
   user: User,
   doLogout: () => void
 };
+
+function getError(props): ?ReactElement {
+  if (props.error) {
+    return <Alert type="danger">{props.error}</Alert>
+  }
+  return null
+}
 
 export default function Home(props: Props): ReactElement {
   return (
@@ -24,10 +33,11 @@ export default function Home(props: Props): ReactElement {
                 Home
               </div>
               <div className="panel-body">
+                { getError(props) }
                 Welcome { props.user.email }
               </div>
               <div className="panel-body">
-                <button className="btn btn-default" onClick={() => props.doLogout()}>Log out</button>
+                <button className="btn btn-default" onClick={ () => props.doLogout() }>Log out</button>
               </div>
             </div>
           </div>

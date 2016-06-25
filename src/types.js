@@ -23,23 +23,9 @@ export type User = {
 // api
 //
 
-type SuccessPayload<T> = {
-  code: 200,
-  data: T
-};
-
-type FailurePayload<T> = {
-  code: 500,
-  data: T
-};
-
-type DoLoginSuccess = SuccessPayload<{
-  email: string
-}>;
-
 export interface Api {
-  doLogin(email: string, password: string): Promise<DoLoginSuccess | FailurePayload<void>>;
-  doLogout(): Promise<SuccessPayload<void>>;
+  doLogin(email: string, password: string): Promise<User | Error>;
+  doLogout(): Promise<{} | Error>;
 }
 
 //
@@ -71,8 +57,9 @@ export type Effect
 //
 
 export type State = {
-  user: ?User,
-  effect: ?Effect
+  effect: ?Effect,
+  error: ?string,
+  user: ?User
 };
 
 //
@@ -91,7 +78,8 @@ type LoginSucceeded = {
 };
 
 type LoginFailed = {
-  type: 'LOGIN_FAILED'
+  type: 'LOGIN_FAILED',
+  error: Error
 };
 
 type LogoutRequested = {
@@ -103,7 +91,8 @@ type LogoutSucceeded = {
 };
 
 type LogoutFailed = {
-  type: 'LOGOUT_FAILED'
+  type: 'LOGOUT_FAILED',
+  error: Error
 };
 
 export type Action

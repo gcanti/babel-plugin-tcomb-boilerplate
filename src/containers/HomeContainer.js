@@ -39,7 +39,7 @@ export default class HomeContainer extends React.Component {
     if (!this.state.user) {
       return null
     }
-    return <Home user={this.state.user} doLogout={this.doLogout} />
+    return <Home error={this.state.error} user={this.state.user} doLogout={this.doLogout} />
   }
 
 }

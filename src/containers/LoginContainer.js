@@ -36,7 +36,7 @@ export default class LoginContainer extends React.Component {
   }
 
   render() {
-    return <Login doLogin={this.doLogin} />
+    return <Login error={this.state.error} doLogin={this.doLogin} />
   }
 
 }

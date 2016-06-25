@@ -9,25 +9,34 @@ import type {
 function runDoLogin(effect, app) {
   return app.api.doLogin(effect.email, effect.password)
     .then(res => {
-      if (res.code === 500) {
-        return {
-          type: 'LOGIN_FAILED'
-        }
+      if (res instanceof Error) {
+        throw res
       }
       return {
         type: 'LOGIN_SUCCEEDED',
-        user: (res.data: User)
+        user: (res: User)
       }
     })
+    .catch(error => ({
+      type: 'LOGIN_FAILED',
+      error
+    }))
 }
 
 function runDoLogout(effect, app) {
   return app.api.doLogout()
-    .then(() => {
+    .then(res => {
+      if (res instanceof Error) {
+        throw res
+      }
       return {
         type: 'LOGOUT_SUCCEEDED'
       }
     })
+    .catch(error => ({
+      type: 'LOGOUT_FAILED',
+      error
+    }))
 }
 
 function runDoNavigate(effect, app) {

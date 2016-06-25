@@ -1,12 +1,13 @@
 // @flow
+import type { Api } from '../types'
 
-function delayedResolve(delta: number, val: any): Promise {
+function delayedResolve<T>(delta: number, val: T): Promise<T> {
   return new Promise((resolve) => {
     setTimeout(() => resolve(val), delta)
   })
 }
 
-function delayedReject(delta: number, val: any): Promise {
+function delayedReject<T>(delta: number, val: T): Promise<T> {
   return new Promise((_, reject) => {
     setTimeout(() => reject(val), delta)
   })
@@ -15,24 +16,18 @@ function delayedReject(delta: number, val: any): Promise {
 function doLogin(email: string, password: string) {
   if (email === 'user@domain.com' && password === 'password') {
     return delayedResolve(300, {
-      code: 200,
-      data: {
-        email
-      }
+      email
     })
   }
-  return delayedReject(300, {
-    code: 500
-  })
+  return delayedReject(300, new Error('invalid_email_password'))
 }
 
 function doLogout() {
-  return delayedResolve(300, {
-    code: 200
-  })
+  return delayedResolve(300, {})
+  // return delayedReject(300, new Error('internal_server_error'))
 }
 
-export default {
+export default ({
   doLogin,
   doLogout
-}
+}: Api)
