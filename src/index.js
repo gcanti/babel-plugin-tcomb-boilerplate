@@ -9,11 +9,14 @@ import api from './api/fake'
 const app = new App(history, api)
 app.subscribe(({ effect }) => {
   if (effect) {
-    console.log('effect', effect) // eslint-disable-line
-    const actionPromise = runEffect(effect, app)
-    if (actionPromise) {
-      actionPromise.then(action => app.store.dispatch(action))
-    }
+    const eff = effect // save the reference so Flow is happy
+    Promise.resolve().then(() => {
+      console.log('running effect:', eff) // eslint-disable-line
+      const actionPromise = runEffect(eff, app)
+      if (actionPromise) {
+        actionPromise.then(action => app.store.dispatch(action))
+      }
+    })
   }
 })
 
