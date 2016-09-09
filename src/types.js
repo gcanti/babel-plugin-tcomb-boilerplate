@@ -13,7 +13,7 @@ import type {
 // models
 //
 
-export type ReactElement = Element & $Refinement<typeof React.isValidElement>;
+export type ReactElement = Element<any> & $Refinement<typeof React.isValidElement>;
 
 export type User = {
   email: string

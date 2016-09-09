@@ -8,7 +8,7 @@ import type { $Reify } from 'tcomb'
 type Type = 'danger' | 'info' | 'warning' | 'success';
 
 type Props = {
-  type?: Type,
+  type: Type,
   children?: any
 };
 
